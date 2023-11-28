@@ -1,0 +1,39 @@
+{
+    "servers": [
+        {
+            "host": "10.10.0.1",
+            "user": "",
+            "password": "",
+            "server_name": "",
+            "dir_path":"",
+            "file_ext":"csv",
+            "sampling":1000,
+            "retry_conn":10000
+        },
+        {
+            "host": "10.10.0.2",
+            "user": "",
+            "password": "",
+            "server_name": "",
+            "dir_path":"",
+            "file_ext":"*",
+            "sampling":4000,
+            "retry_conn":20000
+        }
+    ],
+    "log": {
+        "size": 1,
+        "backups":3,
+        "age":28
+    },
+    "cloud_storage": {
+        "credentials_path":"auth/credentials.json",
+        "project_id":"",
+        "bucket_name":"",
+        "upload_path":"",
+        "retry_conn": 10000,
+        "retry_upload": 5000,
+        "file_upload_attempts":4,
+        "connection_attempts":4
+    }
+}

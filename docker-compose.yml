@@ -1,0 +1,35 @@
+version: '3.4'
+services:
+  vsftpdWLAN:
+    image: crisp/vsftpd
+    container_name: vsftpd_wlan
+    env_file: 
+      - ./ftp/server/.wlan.env
+    ports:
+      - "1022:1022"               
+      - "26200-26220:26200-26220"
+    volumes:
+      - ./ftp/files:/home/vsftpd
+      - ./ftp/server/logs/wlan-connection:/var/log/vsftpd/ 
+    depends_on:
+    - ftp-client
+  vsftpdETH:
+    image: crisp/vsftpd
+    container_name: vsftpd_eth
+    env_file: 
+      - ./ftp/server/.eth.env   
+    ports:
+      - "1021:1021"               
+      - "25200-25220:25200-25220"
+    volumes:
+      - ./ftp/files:/home/vsftpd
+      - ./ftp/server/logs/ethernet-connection:/var/log/vsftpd/
+    depends_on:
+    - ftp-client
+
+  ftp-client:
+    container_name: "ftp-client"
+    image: crisp/ftp-connector
+    volumes:
+      - ./ftp/client/auth:/home/ftp-client/auth  
+      - ./ftp/files:/home/ftp-client/files       
